@@ -69,11 +69,12 @@ Compress all images in a directory:
 
 ### Options
 
-| Option | Long Form  | Description                      | Default |
-| ------ | ---------- | -------------------------------- | ------- |
-| `-f`   | `--format` | Output format (`webp` or `avif`) | `webp`  |
-| `-s`   | `--size`   | Maximum dimension in pixels      | `1920`  |
-| `-h`   | `--help`   | Show brewing instructions        | -       |
+| Option | Long Form   | Description                      | Default |
+| ------ | ----------- | -------------------------------- | ------- |
+| `-f`   | `--format`  | Output format (`webp` or `avif`) | `webp`  |
+| `-s`   | `--size`    | Maximum dimension in pixels      | `1920`  |
+| `-h`   | `--help`    | Show brewing instructions        | -       |
+| `-v`   | `--version` | Show version number              | -       |
 
 ### Examples
 

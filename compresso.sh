@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Add after the shebang line
+VERSION="1.0.0"
+
 # Help function
 show_help() {
     echo "☕ Compresso - Lightweight images, heavy impact"
@@ -10,9 +13,10 @@ show_help() {
     echo "  SOURCE_DIR                 Directory containing images (default: current directory)"
     echo
     echo "Options:"
-    echo "  -f, --format FORMAT       Choose your brew: 'webp' or 'avif' (default: webp)"
-    echo "  -s, --size PIXELS         Cup size in pixels (default: 1920)"
-    echo "  -h, --help               Show brewing instructions"
+    echo "  -f, --format FORMAT     Choose your brew: 'webp' or 'avif' (default: webp)"
+    echo "  -s, --size PIXELS       Cup size in pixels (default: 1920)"
+    echo "  -h, --help              Show brewing instructions"
+    echo "  -v, --version           Show version number"
     echo
     echo "Examples:"
     echo "  $(basename "$0")                           # Brew from current directory"
@@ -50,6 +54,10 @@ while [[ "$#" -gt 0 ]]; do
             fi
             MAX_DIMENSION="$2"
             shift 
+            ;;
+        -v|--version)
+            echo "Compresso v$VERSION"
+            exit 0
             ;;
         -*) 
             echo "Error: Unknown parameter '$1'"

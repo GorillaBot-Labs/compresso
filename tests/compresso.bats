@@ -51,4 +51,10 @@ teardown() {
     # Check if the output image is 50px (using v7 syntax)
     SIZE=$(magick identify -format "%w" "$TEST_DIR/dist/test.webp")
     [ "$SIZE" -eq 50 ]
+}
+
+@test "version command shows version" {
+    run ./compresso.sh --version
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "Compresso v1.0.0" ]]
 } 
