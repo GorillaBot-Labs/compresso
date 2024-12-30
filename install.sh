@@ -39,4 +39,7 @@ echo
 echo "Quick start:"
 echo "  compresso                  # Process current directory"
 echo "  compresso ./images         # Process specific directory"
-echo "  compresso --help          # Show all options" 
+echo "  compresso --help          # Show all options"
+echo
+echo "Note: You may need to restart your shell or run 'source ~/.bashrc'"
+echo "      for tab completion to take effect." 
