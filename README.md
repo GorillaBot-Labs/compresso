@@ -61,6 +61,22 @@ First, make sure you have ImageMagick installed:
 
 ## ⚡ Usage
 
+Compress all images in a directory:
+
+```bash
+./compresso.sh [SOURCE_DIR]
+```
+
+### Options
+
+| Option | Long Form  | Description                      | Default |
+| ------ | ---------- | -------------------------------- | ------- |
+| `-f`   | `--format` | Output format (`webp` or `avif`) | `webp`  |
+| `-s`   | `--size`   | Maximum dimension in pixels      | `1920`  |
+| `-h`   | `--help`   | Show brewing instructions        | -       |
+
+### Examples
+
 ```bash
 ./compresso.sh [SOURCE_DIR] [options]
 
@@ -90,6 +106,47 @@ Your freshly compressed images are served in a `dist` folder within the source d
 - Large images are automatically resized while maintaining quality
 - Small images stay untouched - no unnecessary upscaling
 - We use a carefully chosen 75% quality setting for the perfect balance
+
+## 📄 Testing
+
+### Prerequisites
+
+Install BATS (Bash Automated Testing System):
+
+**macOS:**
+
+```bash
+brew install bats-core
+```
+
+**Ubuntu/Debian:**
+
+```bash
+sudo apt-get install bats
+```
+
+### Running Tests
+
+Run all tests:
+
+```bash
+bats tests/compresso.bats
+```
+
+### Test Coverage
+
+The test suite verifies:
+
+- Command-line argument validation
+- Format conversion functionality
+- Image resizing capabilities
+- Help text display
+- Error handling
+- Output file generation
+
+### Adding New Tests
+
+Tests are written using BATS syntax. See `tests/compresso.bats` for examples.
 
 ## 📄 License
 

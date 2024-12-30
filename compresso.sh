@@ -4,7 +4,7 @@
 show_help() {
     echo "☕ Compresso - Lightweight images, heavy impact"
     echo
-    echo "Usage: $(basename "$0") [SOURCE_DIR] [options]"
+    echo "Usage: $(basename "$0") [options] [SOURCE_DIR]"
     echo
     echo "Arguments:"
     echo "  SOURCE_DIR                 Directory containing images (default: current directory)"
@@ -23,14 +23,12 @@ show_help() {
 }
 
 # Default values
-SOURCE_DIR=${1:-"."}
+SOURCE_DIR="."
 FORMAT="webp"
 MAX_DIMENSION="1920"
 QUALITY=75
 
-shift # Remove the first argument (SOURCE_DIR) from processing
-
-# Parse named arguments
+# Parse named arguments first
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         -h|--help) 
@@ -53,10 +51,13 @@ while [[ "$#" -gt 0 ]]; do
             MAX_DIMENSION="$2"
             shift 
             ;;
-        *) 
+        -*) 
             echo "Error: Unknown parameter '$1'"
             echo "Use --help to see brewing instructions"
             exit 1 
+            ;;
+        *)
+            SOURCE_DIR="$1"
             ;;
     esac
     shift
