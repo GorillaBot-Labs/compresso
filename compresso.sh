@@ -2,7 +2,7 @@
 
 # Help function
 show_help() {
-    echo "Image Conversion and Compression Tool"
+    echo "☕ Compresso - Lightweight images, heavy impact"
     echo
     echo "Usage: $(basename "$0") [SOURCE_DIR] [options]"
     echo
@@ -10,16 +10,16 @@ show_help() {
     echo "  SOURCE_DIR                 Directory containing images (default: current directory)"
     echo
     echo "Options:"
-    echo "  -f, --format FORMAT       Output format: 'webp' or 'avif' (default: webp)"
-    echo "  -s, --size PIXELS         Maximum dimension in pixels (default: 1920)"
-    echo "  -h, --help               Show this help message"
+    echo "  -f, --format FORMAT       Choose your brew: 'webp' or 'avif' (default: webp)"
+    echo "  -s, --size PIXELS         Cup size in pixels (default: 1920)"
+    echo "  -h, --help               Show brewing instructions"
     echo
     echo "Examples:"
-    echo "  $(basename "$0")                           # Process current directory"
-    echo "  $(basename "$0") ./images                  # Process specific directory"
-    echo "  $(basename "$0") ./images -f avif          # Convert to AVIF format"
-    echo "  $(basename "$0") ./images -s 800           # Resize to max 800px"
-    echo "  $(basename "$0") ./images -f webp -s 600   # Convert and resize"
+    echo "  $(basename "$0")                           # Brew from current directory"
+    echo "  $(basename "$0") ./images                  # Select your beans (directory)"
+    echo "  $(basename "$0") ./images -f avif          # Try our AVIF roast"
+    echo "  $(basename "$0") ./images -s 800           # Small batch (800px)"
+    echo "  $(basename "$0") ./images -f webp -s 600   # Custom order (WebP, 600px)"
 }
 
 # Default values
@@ -40,7 +40,7 @@ while [[ "$#" -gt 0 ]]; do
         -f|--format) 
             FORMAT="$2"
             if [[ "$FORMAT" != "webp" && "$FORMAT" != "avif" ]]; then
-                echo "Error: Format must be 'webp' or 'avif'"
+                echo "Error: Format must be either 'webp' or 'avif'"
                 exit 1
             fi
             shift 
@@ -55,7 +55,7 @@ while [[ "$#" -gt 0 ]]; do
             ;;
         *) 
             echo "Error: Unknown parameter '$1'"
-            echo "Use --help to see usage information"
+            echo "Use --help to see brewing instructions"
             exit 1 
             ;;
     esac
@@ -64,8 +64,8 @@ done
 
 # Check if ImageMagick is installed
 if ! command -v magick &> /dev/null; then
-    echo "Error: ImageMagick is not installed"
-    echo "Please install it first:"
+    echo "☕ Oops! Looks like we're missing our brewing equipment (ImageMagick)"
+    echo "Let's get that installed first:"
     echo "  Mac: brew install imagemagick"
     echo "  Ubuntu/Debian: sudo apt-get install imagemagick"
     exit 1
@@ -83,7 +83,7 @@ for file in "$SOURCE_DIR"/*; do
 
     # Check if it's an image
     if [[ "$extension" =~ ^(heic|HEIC|png|PNG|jpeg|JPEG|jpg|JPG)$ ]]; then
-        echo "Converting '$file' to $FORMAT in $DEST_DIR..."
+        echo "☕ Brewing '$file' to $FORMAT in $DEST_DIR..."
         
         # Use magick for conversion
         magick "$file" \
@@ -94,11 +94,11 @@ for file in "$SOURCE_DIR"/*; do
         
         # Check if the command succeeded
         if [[ $? -ne 0 ]]; then
-            echo "Error processing '$file'. Skipping..."
+            echo "⚠️  Oops! Couldn't process '$file'. Skipping this batch..."
         fi
     else
-        echo "Skipping '$file' (not an image)."
+        echo "Skipping '$file' (not the right beans for this brew)."
     fi
 done
 
-echo "Conversion complete. Files saved in $DEST_DIR as $FORMAT."
+echo "☕ Your fresh batch is ready! Files served in $DEST_DIR as $FORMAT."
