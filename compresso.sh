@@ -13,7 +13,7 @@ show_help() {
     echo "  SOURCE_DIR                 Directory containing images (default: current directory)"
     echo
     echo "Options:"
-    echo "  -f, --format FORMAT     Choose your brew: 'webp' or 'avif' (default: webp)"
+    echo "  -f, --format FORMAT     Choose your brew: 'webp', 'avif', 'jpg', or 'png' (default: webp)"
     echo "  -s, --size PIXELS       Cup size in pixels (default: 1920)"
     echo "  -h, --help              Show brewing instructions"
     echo "  -v, --version           Show version number"
@@ -21,9 +21,9 @@ show_help() {
     echo "Examples:"
     echo "  $(basename "$0")                           # Brew from current directory"
     echo "  $(basename "$0") ./images                  # Select your beans (directory)"
-    echo "  $(basename "$0") ./images -f avif          # Try our AVIF roast"
+    echo "  $(basename "$0") ./images -f jpg           # Convert to JPG format"
     echo "  $(basename "$0") ./images -s 800           # Small batch (800px)"
-    echo "  $(basename "$0") ./images -f webp -s 600   # Custom order (WebP, 600px)"
+    echo "  $(basename "$0") ./images -f png -s 600    # Custom order (PNG, 600px)"
 }
 
 # Default values
@@ -41,8 +41,8 @@ while [[ "$#" -gt 0 ]]; do
             ;;
         -f|--format) 
             FORMAT="$2"
-            if [[ "$FORMAT" != "webp" && "$FORMAT" != "avif" ]]; then
-                echo "Error: Format must be either 'webp' or 'avif'"
+            if [[ "$FORMAT" != "webp" && "$FORMAT" != "avif" && "$FORMAT" != "jpg" && "$FORMAT" != "png" ]]; then
+                echo "Error: Format must be either 'webp', 'avif', 'jpg', or 'png'"
                 exit 1
             fi
             shift 
